@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "38ad4bd0-3a04-46a8-b7d1-cff917a59f50",
+		"name": "go-serverless",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24077943"
+	},
+	"item": [
+		{
+			"name": "GET USER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET USER by email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless?email=rahul.tiwari@xyz.com",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "rahul.tiwari@xyz.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"anna@aap.com\",\r\n    \"firstName\": \"anna\",\r\n    \"lastName\": \"hazare\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE USER",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"anna.hazare@aap.com\",\r\n    \"firstName\": \"ANNA\",\r\n    \"lastName\": \"HAZU\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE USER",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless?email=anna@aap.com",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "anna@aap.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unhandeled func",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://7cwa8maxwg.execute-api.ap-northeast-1.amazonaws.com/staging/go-serverless",
+					"protocol": "https",
+					"host": [
+						"7cwa8maxwg",
+						"execute-api",
+						"ap-northeast-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"staging",
+						"go-serverless"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
