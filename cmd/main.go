@@ -16,6 +16,7 @@ var (
 	dynaClient dynamodbiface.DynamoDBAPI
 )
 
+// Project Video :- https://youtu.be/qLRvpJmYfCE?list=PL5dTjWUk_cPYztKD7WxVFluHvpBNM28N9
 // Deployment process :- https://youtu.be/qLRvpJmYfCE?list=PL5dTjWUk_cPYztKD7WxVFluHvpBNM28N9&t=5828
 // AWS SDK GO :- https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/welcome.html
 

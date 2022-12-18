@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/Rahul-71/go-serverless/pkg/user"
@@ -12,17 +13,18 @@ import (
 var ErrorMethodNotAllowed = "method not allowed"
 
 type ErrorBody struct {
-	ErrorMsg *string `json:"error,omitempty"`
+	ErrorMsg *string `json:"response,omitempty"`
 }
 
 func GetUser(req events.APIGatewayProxyRequest, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
 
 	email := req.QueryStringParameters["email"]
 	if len(email) > 0 {
-		result, err := user.FetchUser(email, tableName, dynaClient)
+		result, _ := user.FetchUser(email, tableName, dynaClient)
 
-		if err != nil {
-			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
+		// check if user exist & with correct data
+		if result != nil && len(result.Email) == 0 {
+			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(user.ErrorUserDoesNotExists)})
 		}
 		return apiResponse(http.StatusOK, result)
 	}
@@ -59,11 +61,16 @@ func UpdateUser(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 }
 
 func DeleteUser(req events.APIGatewayProxyRequest, tableName string, dynaClient dynamodbiface.DynamoDBAPI) (*events.APIGatewayProxyResponse, error) {
-	err := user.DeleteUser(req, tableName, dynaClient)
-	if err != nil {
-		return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
+
+	email := req.QueryStringParameters["email"]
+	if len(email) > 0 {
+		if res, err := user.FetchUser(email, tableName, dynaClient); err != nil || len(res.FirstName) == 0 {
+			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(user.ErrorUserDoesNotExists)})
+		} else if err := user.DeleteUser(req, tableName, dynaClient); err != nil {
+			return apiResponse(http.StatusBadRequest, ErrorBody{aws.String(err.Error())})
+		}
 	}
-	return apiResponse(http.StatusOK, nil)
+	return apiResponse(http.StatusOK, ErrorBody{aws.String(fmt.Sprintf("%v successfully deleted", email))})
 }
 
 func UnhandeledMethod() (*events.APIGatewayProxyResponse, error) {
